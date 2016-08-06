@@ -11,7 +11,7 @@
 /docroot/sites/default/**/files
 /docroot/sites/default/**/private
 
-docroot/sites/default/settings.php
+/docroot/sites/default/settings.php
 post-commit.php
 
 # Packages #
