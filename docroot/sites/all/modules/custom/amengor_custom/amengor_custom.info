@@ -1,0 +1,4 @@
+name = Amengor custom module
+description = Amengor custom module
+core = 7.x
+package = Amengor Custom
