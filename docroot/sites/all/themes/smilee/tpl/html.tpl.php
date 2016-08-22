@@ -49,7 +49,7 @@
     <body class = "<?php print $classes; ?>" <?php print $attributes; ?> data-bg='<?php print $background_image; ?>'>
 
         <!-- PRELOADER -->
-        <div id="loader"></div>
+<!--        <div id="loader"></div>-->
         <!-- Loader end -->
 
         <div id="skip-link">
