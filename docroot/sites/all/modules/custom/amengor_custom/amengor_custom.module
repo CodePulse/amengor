@@ -1,8 +1,72 @@
 <?php
 
 /**
+ * Implements hook_block_info().
+ * @see hook_block_info().
+ */
+function amengor_custom_block_info() {
+  $blocks = array();
+
+  $blocks['homepage_category_blocks'] = array(
+    'info' => t('Homepage Category Blocks'),
+  );
+  return $blocks;
+
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function amengor_custom_block_view($delta = '') {
+  $block = array();
+
+  switch ($delta) {
+    case 'homepage_category_blocks':
+      $block['subject'] = '';
+      $block['content'] = amengr_custom_homepage_category_blocks();
+      break;
+  }
+
+  return $block;
+}
+
+function amengr_custom_homepage_category_blocks() {
+  // Load menu blocks
+  $departments = module_invoke('menu', 'block_view', 'menu-departments');
+  $collections = module_invoke('menu', 'block_view', 'menu-collections');
+  $animals = module_invoke('menu', 'block_view', 'menu-animals');
+
+  $content = '';
+
+  // Departments menu block
+  $content .= theme('zsl_custom_theme_blocks', array(
+    'block_header' => render($departments['subject']),
+    'block_content' => render($departments['content'])
+  ));
+  // Collections menu block
+  $content .= theme('zsl_custom_theme_blocks', array(
+    'block_header' => render($collections['subject']),
+    'block_content' => render($collections['content'])
+  ));
+  // Animals menu block
+  $content .= theme('zsl_custom_theme_blocks', array(
+    'block_last' => TRUE,
+    'block_header' => render($animals['subject']),
+    'block_content' => render($animals['content'])
+  ));
+
+
+  return theme('zsl_custom_theme_blocks_wrapper', array(
+    'content' => $content
+  ));
+
+
+}
+
+
+/**
  * Implements hook_form_alter().
  */
 function amengor_custom_form_alter(&$form, &$form_state, $form_id) {
-$r='f';
+
 }
