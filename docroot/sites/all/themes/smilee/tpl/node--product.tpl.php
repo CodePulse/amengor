@@ -200,22 +200,22 @@ $nid = $node->nid;
 
           <br>
 
-          <div class="ps-stock">
-
-            <?php if ($instock == '1') { ?>
-
-              Available: In stock
-
-
-            <?php }
-            else { ?>
-
-              <?php print t('Available: Pre order'); ?>
-
-            <?php } ?>
-
-
-          </div>
+<!--          <div class="ps-stock">-->
+<!---->
+<!--            --><?php //if ($instock == '1') { ?>
+<!---->
+<!--              Available: In stock-->
+<!---->
+<!---->
+<!--            --><?php //}
+//            else { ?>
+<!---->
+<!--              --><?php //print t('Available: Pre order'); ?>
+<!---->
+<!--            --><?php //} ?>
+<!---->
+<!---->
+<!--          </div>-->
 
           <div class="sep"></div>
 
