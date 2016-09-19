@@ -1,15 +1,3 @@
-# Ignore paths that contain user-generated content.
-/docroot/sites/*/files
-/docroot/sites/*/private
-/docroot/files/*
-/docroot/cache
-
-# Ignore css files these will be built on deploy
-/docroot/sites/all/themes/*/css
-
-# ** Only works in OSs that support newer versions of fnmatch (Bash 4+)
-/docroot/sites/default/**/files
-/docroot/sites/default/**/private
 
 /docroot/sites/default/settings.php
 post-commit.php
@@ -54,7 +42,6 @@ Thumbs.db
 .project
 .settings/*
 .settings
-.htpasswd
 .DS_Store
 
 # Ignore Netbeans IDE stuff
