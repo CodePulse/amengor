@@ -4,6 +4,8 @@
 /docroot/files/*
 /docroot/cache
 
+docroot/sites/default/settings.php
+
 # ** Only works in OSs that support newer versions of fnmatch (Bash 4+)
 /docroot/sites/default/**/files
 /docroot/sites/default/**/private
@@ -73,7 +75,3 @@ sftp-config.json
 
 # Vagrant private files
 .vagrant
-
-docroot/sites/default/settings.php
-/docroot/sites/default/settings.php
-settings.php
