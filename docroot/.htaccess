@@ -150,5 +150,5 @@ DirectoryIndex index.php index.html index.htm
 
 AuthType Basic
 AuthName "Password Protected Area"
-AuthUserFile /.htpasswd
+AuthUserFile .htpasswd
 Require valid-user
