@@ -51,7 +51,6 @@ Thumbs.db
 .project
 .settings/*
 .settings
-.htpasswd
 .DS_Store
 
 # Ignore Netbeans IDE stuff
