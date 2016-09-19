@@ -1,12 +1,3 @@
-# Ignore paths that contain user-generated content.
-/docroot/sites/*/files
-/docroot/sites/*/private
-/docroot/files/*
-/docroot/cache
-
-# ** Only works in OSs that support newer versions of fnmatch (Bash 4+)
-/docroot/sites/default/**/files
-/docroot/sites/default/**/private
 
 /docroot/sites/default/settings.php
 post-commit.php
