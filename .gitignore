@@ -4,11 +4,12 @@
 /docroot/files/*
 /docroot/cache
 
+docroot/sites/default/settings.php
+
 # ** Only works in OSs that support newer versions of fnmatch (Bash 4+)
 /docroot/sites/default/**/files
 /docroot/sites/default/**/private
 
-/docroot/sites/default/settings.php
 post-commit.php
 
 # Packages #
