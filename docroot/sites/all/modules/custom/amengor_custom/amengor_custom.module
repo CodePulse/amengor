@@ -93,6 +93,15 @@ function amengr_custom_homepage_category_blocks() {
 
 }
 
+/**
+ * Implements hook_views_api().
+ */
+function amengor_custom_views_api() {
+  return array(
+    'api' => 3,
+    'path' => drupal_get_path('module', 'amengor_custom'),
+  );
+}
 
 /**
  * Implements hook_form_alter().
