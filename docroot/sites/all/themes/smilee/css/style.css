@@ -87,7 +87,6 @@ a:focus{
     background: #292929;
     border-top: 1px solid #2f2e2a;
     position: relative;
-    z-index: 9999999;
 }
 
 .home3 .top_bar {
