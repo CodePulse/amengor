@@ -88,7 +88,9 @@ a:focus{
     border-top: 1px solid #2f2e2a;
     position: relative;
 }
-
+#admin-menu, #admin-menu .dropdown {
+    z-index: 999999;
+}
 .home3 .top_bar {
     height: 44px;
     background: #fff;
