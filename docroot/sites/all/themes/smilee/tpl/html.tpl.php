@@ -64,7 +64,6 @@
                 require_once(drupal_get_path('theme', 'smilee') . '/tpl/switcher.tpl.php');
             }
             ?>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
         <?php print $scripts; ?>
       
