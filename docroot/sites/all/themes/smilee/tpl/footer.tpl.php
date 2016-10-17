@@ -98,7 +98,7 @@ if (isset($node)) {
 
 <?php if ($page['modal']): ?>
 
-    <?php print render($page['modal']); ?>
+<!--    --><?php //print render($page['modal']); ?>
 
 <?php endif; ?>
 
