@@ -109,3 +109,14 @@ function amengor_custom_views_api() {
 function amengor_custom_form_alter(&$form, &$form_state, $form_id) {
 
 }
+
+/**
+ * Perform alterations on an auto-created display node, before it is saved.
+ *
+ * @param object $node
+ *   The initialized display node object, with its product reference field
+ *   set to the newly created products.
+ */
+function amengor_custom_commerce_bpc_display_node_alter(&$node) {
+  $node->field_gender[LANGUAGE_NONE][0]['tid'] = $_POST['static_values']['field_gender'][LANGUAGE_NONE];
+}
