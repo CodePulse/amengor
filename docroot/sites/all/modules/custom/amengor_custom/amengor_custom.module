@@ -119,4 +119,5 @@ function amengor_custom_form_alter(&$form, &$form_state, $form_id) {
  */
 function amengor_custom_commerce_bpc_display_node_alter(&$node) {
   $node->field_gender[LANGUAGE_NONE][0]['tid'] = $_POST['static_values']['field_gender'][LANGUAGE_NONE];
+  $node->field_sub_category[LANGUAGE_NONE][0]['tid'] = $_POST['static_values']['field_sub_category'][LANGUAGE_NONE];
 }
