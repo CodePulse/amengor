@@ -1,5 +1,3 @@
-<?php $sale = trim(strip_tags(render($content['product:field_commerce_saleprice_on_sale']))); ?>
-
 <?php
 
 if ((isset($content['product:field_image']['#items'])) && (!empty($content['product:field_image']['#items']))) {
@@ -41,8 +39,8 @@ $nid = $node->nid;
         )); ?>
 
 
-        <div class="overlay-rmore fa fa-search quickview" data-toggle="modal"
-             data-target="#Modal<?php print $nid; ?>"></div>
+<!--        <div class="overlay-rmore fa fa-search quickview" data-toggle="modal"-->
+<!--             data-target="#Modal--><?php //print $nid; ?><!--"></div>-->
 
 
       </div>
@@ -52,17 +50,7 @@ $nid = $node->nid;
         <h4 class="product-title"><a
             href="<?php print $node_url; ?>"><?php print $title; ?></a></h4>
 
-                <span class="product-price">  <?php if ($sale == '1') { ?>
-
-
-                    <?php print strip_tags(render($content['product:field_commerce_saleprice'])); ?>
-
-                  <?php }
-                  else { ?>
-
-                    <?php print strip_tags(render($content['product:commerce_price'])); ?>
-
-                  <?php } ?></span>
+                <span class="product-price">  <?php print strip_tags(render($content['product:commerce_price'])); ?> </span>
 
         <div class="ratings">
 
