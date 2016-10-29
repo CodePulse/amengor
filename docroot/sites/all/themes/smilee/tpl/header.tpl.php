@@ -1,12 +1,12 @@
 <?php
-$background_image = theme_get_setting('logo_title', 'smilee');
-if (isset(file_load($background_image)->uri)) {
-    $url_background_image = file_create_url(file_load($background_image)->uri);
-} else {
-    $url_background_image = '';
-}
-?>
-<input type="hidden" value="<?php print $background_image; ?>" id="background-image" />
+//$background_image = theme_get_setting('logo_title', 'smilee');
+//if (isset(file_load($background_image)->uri)) {
+//    $url_background_image = file_create_url(file_load($background_image)->uri);
+//} else {
+//    $url_background_image = '';
+//}
+//?>
+<!--<input type="hidden" value="--><?php //print $background_image; ?><!--" id="background-image" />-->
 
 <?php global $base_url; ?>
 <?php

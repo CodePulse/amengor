@@ -281,20 +281,20 @@ function smilee_breadcrumb($variables) {
 }
 
 function single_navigation($ntype, $nid, $nav) {
-    $current_node = node_load($nid);
-
-    $prev_nid = db_query("SELECT n.nid FROM {node} n WHERE n.type = :type AND n.status = 1 AND n.created < :created  ORDER BY n.created DESC LIMIT 1", array(':created' => $current_node->created, ':type' => $ntype))->fetchField();
-
-
-    $next_nid = db_query("SELECT n.nid FROM {node} n WHERE n.type = :type AND n.status = 1 AND n.created > :created LIMIT 1", array(':created' => $current_node->created, ':type' => $ntype))->fetchField();
-    $link = '';
-
-    if ($prev_nid > 0 && $nav == 'prev') {
-        $node = node_load($prev_nid);
-        $link .= '<a href="' . url("node/" . $node->nid) . '" class="post-nav__item"><i class="icon icon-arrow-left"></i><span class="post-nav__name">previous article</span></a>';
-    } elseif ($next_nid > 0 && $nav == 'next') {
-        $node = node_load($next_nid);
-        $link .= '<a href="' . url("node/" . $node->nid) . '" class="post-nav__item"><span class="post-nav__name">next article</span><i class="icon icon-arrow-right"></i></a>';
-    }
-    return $link;
+//    $current_node = node_load($nid);
+//
+//    $prev_nid = db_query("SELECT n.nid FROM {node} n WHERE n.type = :type AND n.status = 1 AND n.created < :created  ORDER BY n.created DESC LIMIT 1", array(':created' => $current_node->created, ':type' => $ntype))->fetchField();
+//
+//
+//    $next_nid = db_query("SELECT n.nid FROM {node} n WHERE n.type = :type AND n.status = 1 AND n.created > :created LIMIT 1", array(':created' => $current_node->created, ':type' => $ntype))->fetchField();
+//    $link = '';
+//
+//    if ($prev_nid > 0 && $nav == 'prev') {
+//        $node = node_load($prev_nid);
+//        $link .= '<a href="' . url("node/" . $node->nid) . '" class="post-nav__item"><i class="icon icon-arrow-left"></i><span class="post-nav__name">previous article</span></a>';
+//    } elseif ($next_nid > 0 && $nav == 'next') {
+//        $node = node_load($next_nid);
+//        $link .= '<a href="' . url("node/" . $node->nid) . '" class="post-nav__item"><span class="post-nav__name">next article</span><i class="icon icon-arrow-right"></i></a>';
+//    }
+//    return $link;
 }
