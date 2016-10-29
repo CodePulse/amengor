@@ -149,9 +149,6 @@ $nid = $node->nid;
 
         <div class="ps-header">
 
-          <?php if ($sale == '1') {
-            print t('<span class="badge offer">Sale!</span>');
-          } ?>
 
           <h3><?php print $title; ?></h3>
 
@@ -168,19 +165,7 @@ $nid = $node->nid;
 
           <div class="ps-price">
 
-            <?php if ($sale == '1') { ?>
-
-              <span><?php print strip_tags(render($content['product:commerce_price'])); ?></span>
-
-              <?php print strip_tags(render($content['product:field_commerce_saleprice'])); ?>
-
-            <?php }
-            else { ?>
-
               <?php print strip_tags(render($content['product:commerce_price'])); ?>
-
-            <?php } ?>
-
 
           </div>
           <?php print render($content['product:field_product_description']); ?>
