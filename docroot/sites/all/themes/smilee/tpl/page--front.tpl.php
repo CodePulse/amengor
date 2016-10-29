@@ -1,4 +1,4 @@
-<?php require_once(drupal_get_path('theme', 'smilee') . '/tpl/header.tpl.php'); ?>
+<?php //require_once(drupal_get_path('theme', 'smilee') . '/tpl/header.tpl.php'); ?>
 
 <?php if ($page['slider']): ?>
   <?php print render($page['slider']); ?>
