@@ -14,19 +14,19 @@
 
         <?php
         print $styles;
-        print $head;
+//        print $head;
         ?>
 
         <?php
         //Tracking code
 
-        $tracking_code = theme_get_setting('general_setting_tracking_code', 'smilee');
+//        $tracking_code = theme_get_setting('general_setting_tracking_code', 'smilee');
 
-        print $tracking_code;
+//        print $tracking_code;
 
         //Custom css
 
-        $custom_css = theme_get_setting('custom_css', 'smilee');
+//        $custom_css = theme_get_setting('custom_css', 'smilee');
 
         if (!empty($custom_css)):
             ?>
@@ -41,12 +41,12 @@
 
     </head>
     <?php
-    $bg_image = theme_get_setting('background_image', 'smilee');
+//    $bg_image = theme_get_setting('background_image', 'smilee');
    
-        $background_image = "/images/pattern/" . $bg_image;
+//        $background_image = "/images/pattern/" . $bg_image;
     
     ?>
-    <body class = "<?php print $classes; ?>" <?php print $attributes; ?> data-bg='<?php print $background_image; ?>'>
+    <body class = "<?php print $classes; ?>" <?php print $attributes; ?>>
 
         <!-- PRELOADER -->
 <!--        <div id="loader"></div>-->
