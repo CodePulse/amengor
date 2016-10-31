@@ -65,7 +65,7 @@
             }
             ?>
 
-        <?php print $scripts; ?>
+<!--        --><?php //print $scripts; ?>
 
     </body>
 
