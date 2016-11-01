@@ -10,47 +10,47 @@
 
 <?php global $base_url; ?>
 <?php
-//if (isset($node->field_header_style) && !empty($node->field_header_style)) {
-//    $header_style = $node->field_header_style['und'][0]['value'];
-//} else {
-//    $header_style = 'style1';
-//}
-//
-//$header_welcome = theme_get_setting('header_welcome', 'smilee');
-//$contact_mail = theme_get_setting('contact_mail', 'smilee');
-//$contact_phone = theme_get_setting('contact_phone', 'smilee');
-//
-//if (isset($node->field_header_style) && !empty($node->field_header_style)) {
-//    $header_style = $node->field_header_style['und'][0]['value'];
-//} else {
-//    $header_style = theme_get_setting('header_style', 'smilee');
-//}
-//if ($header_style == "") {
-//    $header_style = 'style1';
-//}
-//if ($header_style == 'style2'):
-//    $headerid = "home2";
-//    $headerclass = "header2";
-//elseif ($header_style == "style3"):
-//    $headerid = "home2";
-//    $headerclass = "home3";
-//elseif ($header_style == "style4"):
-//    $headerid = "home4";
-//    $headerclass = "";
-//elseif ($header_style == "style5"):
-//    $headerid = "home5";
-//    $headerclass = "";
-//else:
-//    $headerid = "none";
-//    $headerclass = "";
-//endif;
-//$boxed = theme_get_setting('site_layout', 'smilee');
-//if ($boxed == "boxed") {
-//    $boxed = "boxed";
-//} else {
-//    $boxed = '';
-//}
-//?>
+if (isset($node->field_header_style) && !empty($node->field_header_style)) {
+    $header_style = $node->field_header_style['und'][0]['value'];
+} else {
+    $header_style = 'style1';
+}
+
+$header_welcome = theme_get_setting('header_welcome', 'smilee');
+$contact_mail = theme_get_setting('contact_mail', 'smilee');
+$contact_phone = theme_get_setting('contact_phone', 'smilee');
+
+if (isset($node->field_header_style) && !empty($node->field_header_style)) {
+    $header_style = $node->field_header_style['und'][0]['value'];
+} else {
+    $header_style = theme_get_setting('header_style', 'smilee');
+}
+if ($header_style == "") {
+    $header_style = 'style1';
+}
+if ($header_style == 'style2'):
+    $headerid = "home2";
+    $headerclass = "header2";
+elseif ($header_style == "style3"):
+    $headerid = "home2";
+    $headerclass = "home3";
+elseif ($header_style == "style4"):
+    $headerid = "home4";
+    $headerclass = "";
+elseif ($header_style == "style5"):
+    $headerid = "home5";
+    $headerclass = "";
+else:
+    $headerid = "none";
+    $headerclass = "";
+endif;
+$boxed = theme_get_setting('site_layout', 'smilee');
+if ($boxed == "boxed") {
+    $boxed = "boxed";
+} else {
+    $boxed = '';
+}
+?>
 <div class=" <?php print $headerclass ?> body <?php print $boxed; ?>" id="<?php print $headerid; ?>" >
     <?php if ($header_style == 'style1'): ?>
         <div class="top_bar">
