@@ -14,7 +14,7 @@
 
         <?php
         print $styles;
-//        print $head;
+        print $head;
         ?>
 
         <?php
@@ -65,7 +65,7 @@
             }
             ?>
 
-<!--        --><?php //print $scripts; ?>
+        <?php print $scripts; ?>
 
     </body>
 
