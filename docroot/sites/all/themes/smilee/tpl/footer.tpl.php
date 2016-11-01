@@ -94,11 +94,3 @@ if (isset($node)) {
 
 </div><!-- end body - body header-->
 
-
-
-<?php if ($page['modal']): ?>
-
-<!--    --><?php //print render($page['modal']); ?>
-
-<?php endif; ?>
-
