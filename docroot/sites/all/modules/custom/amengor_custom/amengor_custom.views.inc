@@ -14,7 +14,7 @@ function amengor_custom_views_query_alter(&$view, &$query) {
     $query->add_field('node', 'title', 'node_title', array('function' => 'groupby'));
     $query->distinct=TRUE;
   }
-  if ($view->name == '_smilee_product' && $view->current_display == 'block_upsell_products' && $view->current_display == 'block_recent_products_sg') {
+  if ($view->name == '_smilee_product' && $view->current_display == 'block_upsell_products' || $view->current_display == 'block_recent_products_sg') {
     // Prevent duplicate products being displayed under latest products
     $query->add_field('node', 'title', 'node_title', array('function' => 'groupby'));
     $query->distinct=TRUE;
