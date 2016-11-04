@@ -107,7 +107,10 @@ function amengor_custom_views_api() {
  * Implements hook_form_alter().
  */
 function amengor_custom_form_alter(&$form, &$form_state, $form_id) {
-
+  if ($form['#form_id'] == 'commerce_paypal_ec_order_form') {
+    $form['paypal_ec']['#access'] = FALSE;
+  }
+$rf='f';
 }
 
 /**
