@@ -163,6 +163,11 @@ $nid = $node->nid;
 
           </div>
 
+          <?php if ($content['product:field_available_in_different_col']['#items'][0]['value'] == 1) : ?>
+          <div class="ps-colour">
+            Available in different colours
+            </div>
+          <?php endif; ?>
           <div class="ps-price">
 
               <?php print strip_tags(render($content['product:commerce_price'])); ?>
