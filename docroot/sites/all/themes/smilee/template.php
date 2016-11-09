@@ -25,10 +25,10 @@ drupal_add_html_head($css_skin, 'skin');
 
 function smilee_preprocess_html(&$variables) {
     //-- Google web fonts -->
-    drupal_add_css('http://fonts.googleapis.com/css?family=Raleway:400,200,100,300,500,600,700,800,900', array('type' => 'external'));
-    drupal_add_css('http://fonts.googleapis.com/css?family=Lato:400,100,300,300italic,700,900', array('type' => 'external'));
-    drupal_add_css('http://fonts.googleapis.com/css?family=Montserrat:400,700', array('type' => 'external'));
-    drupal_add_css('http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/ui-lightness/jquery-ui.css', array('type' => 'external'));
+    drupal_add_css('https://fonts.googleapis.com/css?family=Raleway:400,200,100,300,500,600,700,800,900', array('type' => 'external'));
+    drupal_add_css('https://fonts.googleapis.com/css?family=Lato:400,100,300,300italic,700,900', array('type' => 'external'));
+    drupal_add_css('https://fonts.googleapis.com/css?family=Montserrat:400,700', array('type' => 'external'));
+    drupal_add_css('https://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/ui-lightness/jquery-ui.css', array('type' => 'external'));
     drupal_add_js('https://maps.googleapis.com/maps/api/js?v=3.exp&amp;sensor=false', array('type' => 'external'));
 }
 

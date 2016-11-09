@@ -4,7 +4,7 @@
             if ($picture) {
                 print strip_tags($picture, '<img>');
             } else {
-                ?><img class="comment-avatar"  src='http://2.gravatar.com/avatar/20ba2a1e248ffa7cd7f48d659107b4c5?s=100&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/20ba2a1e248ffa7cd7f48d659107b4c5?s=200&amp;d=mm&amp;r=g 2x'   height="100" width="135" alt="avatar" />
+                ?><img class="comment-avatar"  src='https://2.gravatar.com/avatar/20ba2a1e248ffa7cd7f48d659107b4c5?s=100&#038;d=mm&#038;r=g' srcset='https://2.gravatar.com/avatar/20ba2a1e248ffa7cd7f48d659107b4c5?s=200&amp;d=mm&amp;r=g 2x'   height="100" width="135" alt="avatar" />
             <?php } ?></div>
         <div class="comment-meta">
             <?php print $author; ?>
