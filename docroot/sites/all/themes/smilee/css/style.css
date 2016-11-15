@@ -2945,6 +2945,7 @@ footer {
 .ps-slider img {
     width: 100%;
     transition: .4s;
+    height:auto;
 }
 
 .ps-slider-nav {
