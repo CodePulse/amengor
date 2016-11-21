@@ -2822,6 +2822,10 @@ footer {
     background: url(../images/bg/womens-header-image.png) no-repeat right;
 }
 
+.page-shop-accessories .page_header {
+    background: url(../images/bg/accessories-header-image.jpg) no-repeat right;
+}
+
 .bcrumbs ul li {
     float: left;
     margin-right: 24px;
