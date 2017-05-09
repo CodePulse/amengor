@@ -2817,9 +2817,19 @@ footer {
 .page-shop-menswear .page_header {
     background: url(../images/bg/mens-header-image.png) no-repeat right;
 }
+.page-shop .page_header {
+    background: url(../images/bg/shop-bg.jpg) no-repeat right;
+}
 
 .page-shop-womenswear .page_header {
     background: url(../images/bg/womens-header-image.png) no-repeat right;
+}
+
+.page-shop-men-accessories .page_header {
+    background: url(../images/bg/men-accessories.jpg) no-repeat right;
+}
+.page-shop-women-accessories .page_header {
+    background: url(../images/bg/women-accessories.jpg) no-repeat right;
 }
 
 .page-shop-accessories .page_header {
@@ -2855,6 +2865,7 @@ footer {
     float: right;
     padding: 0 50px;
     display: table;
+    background: rgba(107, 104, 104, 0.5);
 }
 
 .page_header_info h2 {
