@@ -2815,14 +2815,14 @@ footer {
     height: 447px;
 }
 .page-shop-menswear .page_header {
-    background: url(../images/bg/mens-header-image.png) no-repeat right;
+    background: url(../images/bg/mens-bg.jpg) no-repeat right;
 }
 .page-shop .page_header {
     background: url(../images/bg/shop-bg.jpg) no-repeat right;
 }
 
 .page-shop-womenswear .page_header {
-    background: url(../images/bg/womens-header-image.png) no-repeat right;
+    background: url(../images/bg/women-bg.jpg) no-repeat right;
 }
 
 .page-shop-men-accessories .page_header {
@@ -2830,6 +2830,9 @@ footer {
 }
 .page-shop-women-accessories .page_header {
     background: url(../images/bg/women-accessories.jpg) no-repeat right;
+}
+.page-shop-carvings-accessories .page_header {
+    background: url(../images/bg/carvings.jpg) no-repeat right;
 }
 
 .page-shop-accessories .page_header {
