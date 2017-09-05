@@ -199,7 +199,7 @@ $nid = $node->nid;
 
           <div class="select-wraps">
 
-            <?php print render($content['field_product']); ?>
+            <?php print render($content['field_accesory_product']); ?>
             <br>
             <?php print render($content['field_share']); ?>
 
