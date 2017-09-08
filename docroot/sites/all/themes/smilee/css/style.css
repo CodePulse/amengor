@@ -102,9 +102,9 @@ a:focus{
 }
 
 header {
-    height: 140px;
+    height: 120px;
     background: #fff;
-    padding: 56px 0;
+    padding: 20px 0;
     position: relative;
     z-index: 999999;
     transition: .4s;
