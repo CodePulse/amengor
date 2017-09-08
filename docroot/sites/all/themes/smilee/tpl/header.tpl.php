@@ -68,19 +68,9 @@ if ($boxed == "boxed") {
                                 </ul>
                             </div>
                             <div class="tb_right pull-right">
-                                <ul>
-                                    <li>
-                                        <div class="tbr-info">
-                                            <span>Account <i class="fa fa-caret-down"></i></span>
-                                            <div class="tbr-inner">
-                                                <?php if ($page['user_menu']): ?>
-                                                    <?php print render($page['user_menu']); ?>
-                                                <?php endif; ?>
-                                            </div>
-                                        </div>
-                                    </li>
-
-                                </ul>
+                                <div class="tbr-info">
+                                    <span><?php print render($page['user_menu']); ?></span>
+                                </div>
                             </div>
                         </div>
                     </div>

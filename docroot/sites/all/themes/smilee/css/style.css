@@ -1373,9 +1373,20 @@ footer {
 }
 
 .top_bar p {
-    color: #ccc;
+    color: #fff;
+    font-weight: 600;
 }
-
+.tbr-info .block-menu a {
+    color: #fff;
+    font-weight: 600;
+    margin-right:20px;
+}
+.tbr-info .block-menu a:hover {
+    color: #fff;
+}
+.tbr-info .block-menu {
+    padding:11px 0;
+}
 .tb_left {
     padding: 8px 0;
 }
@@ -1409,7 +1420,8 @@ footer {
 }
 
 .tb_center ul li a {
-    color: #cccccc;
+    color: #fff;
+    font-weight:600;
 }
 
 .tbr-inner {
