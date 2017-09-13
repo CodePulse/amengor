@@ -102,9 +102,9 @@ a:focus{
 }
 
 header {
-    height: 120px;
+    height: 70px;
     background: #fff;
-    padding: 20px 0;
+    padding: 10px 0;
     position: relative;
     z-index: 999999;
     transition: .4s;
@@ -131,7 +131,7 @@ header {
 
 .navbar-brand > img {
     display: block;
-    height: 75px;
+    height: 55px;
     transition: .4s;
 }
 
