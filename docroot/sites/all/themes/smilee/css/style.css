@@ -2858,7 +2858,8 @@ footer {
 }
 
 .page-shop-accessories .page_header {
-    background: url(../images/bg/accessories-header-image.jpg) no-repeat right;
+    background: url(../images/bg/DSC_9891.jpg) no-repeat right;
+    background-size: cover;
 }
 
 .bcrumbs ul li {
