@@ -5230,3 +5230,9 @@ label.css-label {
     font-weight:bold;
     color:green;
 }
+a.footer-social img {
+    width: 50px;
+    padding: 5px;
+    height:auto;
+    display:inline-block;
+}
