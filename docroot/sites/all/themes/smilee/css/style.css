@@ -2827,20 +2827,26 @@ footer {
     height: 447px;
 }
 .page-shop-menswear .page_header {
-    background: url(../images/bg/DSC_0825.jpg) no-repeat right;
+    background: url(../images/bg/DSC_0825.jpg) no-repeat;
     background-size: cover;
+    background-position-y: 35%;
 }
 .page-shop .page_header {
     background: url(../images/bg/shop-bg.jpg) no-repeat right;
+    background-size: cover;
+    background-position-y: 35%;
 }
 
 .page-shop-womenswear .page_header {
     background: url(../images/bg/women-bg.jpg) no-repeat right;
+    background-size: cover;
+    background-position-y: 35%;
 }
 
 .page-shop-men-accessories .page_header {
     background: url(../images/bg/men-accessories.jpg) no-repeat right;
-    background-size:cover;
+    background-size: cover;
+    background-position-y: 35%;
 }
 .page-shop-women-accessories .page_header {
     background: url(../images/bg/DSC_9644.jpg) no-repeat right;
