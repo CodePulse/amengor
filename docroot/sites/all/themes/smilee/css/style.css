@@ -2827,7 +2827,8 @@ footer {
     height: 447px;
 }
 .page-shop-menswear .page_header {
-    background: url(../images/bg/mens-bg.jpg) no-repeat right;
+    background: url(../images/bg/DSC_0825.jpg) no-repeat right;
+    background-size: cover;
 }
 .page-shop .page_header {
     background: url(../images/bg/shop-bg.jpg) no-repeat right;
