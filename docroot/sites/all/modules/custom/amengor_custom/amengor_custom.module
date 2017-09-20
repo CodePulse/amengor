@@ -13,6 +13,22 @@ function amengor_custom_menu() {
     'file' => 'amengor_custom.pages.inc',
   );
 
+
+  $items['admin/config/upsell-products'] = array(
+    'title' => 'Upsell products for emails',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('amengor_custom_upsell_products'),
+    'access arguments' => user_access('access administration pages'),
+    'file' => 'amengor_custom.pages.inc',
+  );
+
+  $items['admin/config/resend-order-confirmation-email'] = array(
+    'title' => 'Resend email',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('amengor_custom_resend_order_confirmation'),
+    'access arguments' => user_access('access administration pages'),
+    'file' => 'amengor_custom.pages.inc',
+  );
   return $items;
 }
 
@@ -26,6 +42,12 @@ function amengor_custom_theme($existing, $type, $theme, $path) {
         'login' => NULL,
       ),
       'template' => 'templates/login-link'
+    ),
+    'amengor_custom_order_email_confirmation' => array(
+      'variables' => array(
+        'email_content' => NULL,
+      ),
+      'template' => 'templates/commerce/emails/order-confirmation'
     ),
   );
 }
@@ -126,4 +148,249 @@ function amengor_custom_commerce_bpc_display_node_alter(&$node) {
   if(isset($_POST['static_values']['field_sub_category'])) {
     $node->field_sub_category[LANGUAGE_NONE][0]['tid'] = $_POST['static_values']['field_sub_category'][LANGUAGE_NONE];
   }
+}
+
+/**
+ * Implements hook_commerce_order_presave().
+ */
+function amengor_custom_commerce_checkout_complete($order) {
+  $params = _amengor_custom_order_details(array($order));
+  $params['current_order']->order_number = $order->order_number;
+
+    drupal_mail('amengor_custom', 'order_confirmation', $order->mail, language_default(), $params);
+}
+
+/**
+ * Implements hook_mail().
+ */
+function amengor_custom_mail($key, &$message, $params) {
+  $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';
+  switch ($key) {
+    case 'order_confirmation':
+      $message['subject'] = 'Order confirmation';
+      $message['body'][] = theme('amengor_custom_order_email_confirmation', array('email_content' => $params));
+      break;
+  }
+}
+
+function _amengor_custom_order_details($orders = array(), $abandoned = 0, $your_orders_page = 0) {
+  $order_dates = array();
+  $past_orders = array();
+  $current_orders = array();
+  $abandoned_orders = array();
+  $exclude_orders_type = array(
+    'checkout_zsl_payment',
+    'checkout_checkout',
+    'cart',
+    'canceled',
+    'order_fulfilled',
+    'completed',
+    'wishlist',
+  );
+
+  $past_order_types = array(
+    // This status is set by ZSL once the order has been dispatched, so its still
+    // 'complete'
+    'pending',
+  );
+
+  if ($your_orders_page) {
+    $exclude_orders_type[] = 'checkout_review';
+    $exclude_orders_type[] = 'checkout_payment';
+    $exclude_orders_type[] = 'wishlist';
+  }
+  $params = array();
+
+  foreach ($orders as $order_id => $order) {
+    $order_date = format_date($order->created, 'custom', 'F Y');
+    $order_dates[] = format_date($order->created, 'custom', 'F Y');
+
+    if (in_array($order->status, $past_order_types)) {
+      $past_orders[$order_date][] = $order;
+      if (count($orders) === 1) {
+        // A user can only one order when reviewing an order, so lets give it its own
+        // variable so its cleaner to work with in tpl files.
+        $params['current_order'] = $orders[0];
+      }
+    }
+    elseif (!in_array($order->status, $exclude_orders_type)) {
+      $current_orders[] = $order;
+      if (count($orders) === 1) {
+        // A user can only one order when reviewing an order, so lets give it its own
+        // variable so its cleaner to work with in tpl files.
+        $params['current_order'] = $orders[0];
+      }
+
+    }
+
+    $order_wrapper = entity_metadata_wrapper('commerce_order', $order);
+
+    $shipping = $order_wrapper->commerce_customer_shipping->value();
+    $billing = $order_wrapper->commerce_customer_billing->value();
+
+    $line_items = $order_wrapper->commerce_line_items->value();
+
+    $raw_order_total = $order_wrapper->commerce_order_total->amount->value();
+    $order_currency = $order_wrapper->commerce_order_total->currency_code->value();
+
+    $readable_total = commerce_currency_format($raw_order_total, $order_currency);
+
+    $sub_total_excl_vat = commerce_price_component_load($order_wrapper->commerce_order_total->value(), 'base_price');
+    $readable_sub_total = commerce_currency_format($sub_total_excl_vat[0]['price']['amount'], $sub_total_excl_vat[0]['price']['currency_code']);
+
+    $vat = commerce_price_component_load($order_wrapper->commerce_order_total->value(), 'tax|vat_20_');
+    $readable_vat = commerce_currency_format($vat[0]['price']['amount'], $vat[0]['price']['currency_code']);
+
+    $line_items_total = commerce_line_items_total($line_items, array('product'));
+    $readable_line_items_total = commerce_currency_format($line_items_total['amount'], $line_items_total['currency_code']);
+
+    $order_total = $order_wrapper->commerce_order_total->value();
+    $list_of_discounts = array();
+
+    foreach ($order_total['data']['components'] as $prices) {
+      if (substr($prices['name'], 0, 9) == 'discount|') {
+        $readable_discount_amount = commerce_currency_format($prices['price']['amount'], $prices['price']['currency_code']);
+
+        $list_of_discounts[] = array(
+          'discount_amount' => $readable_discount_amount,
+          'discount_title' => $prices['price']['data']['discount_component_title'],
+        );
+      }
+    }
+    $customer_address = $shipping->commerce_customer_address[LANGUAGE_NONE][0];
+    $billing_address = $billing->commerce_customer_address[LANGUAGE_NONE][0];
+
+    $user_account = user_load($order->uid);
+    $first_name = field_get_items('user', $user_account, 'field_user_first_name');
+    $surname = field_get_items('user', $user_account, 'field_user_surname');
+
+    $order->order_sub_total_inc_vat = $readable_line_items_total;
+    $order->order_sub_total = $readable_sub_total;
+    $order->order_vat = $readable_vat;
+    $order->first_name = $first_name[0]['value'];
+    $order->surname = $surname[0]['value'];
+    $order->order_total = $readable_total;
+    $order->commerce_total = $readable_total;
+
+    $address_fields = array(
+      'organisation_name',
+      'thoroughfare',
+      'premise',
+      'sub_premise',
+      'locality',
+      'administrative_area',
+      'postal_code',
+    );
+
+    // Populate address field if set
+    foreach ($address_fields as $address_field_name) {
+      if (array_key_exists($address_field_name, $customer_address) && !empty($customer_address[$address_field_name])) {
+        $params['order_delivery_address'][$address_field_name] = ucwords($customer_address[$address_field_name]);
+      }
+    }
+    foreach ($address_fields as $address_field_name) {
+      if (array_key_exists($address_field_name, $billing_address) && !empty($billing_address[$address_field_name])) {
+        $params['order_billing_address'][$address_field_name] = ucwords($billing_address[$address_field_name]);
+      }
+    }
+
+    foreach ($line_items as $id => $line_item) {
+      if ($line_item->type == 'product' || $line_item->type == 'product_discount') {
+        $line_item_wrapper = entity_metadata_wrapper('commerce_line_item', $line_item);
+        $product = $line_item_wrapper->commerce_product->value();
+        $raw_line_item_price = $line_item_wrapper->commerce_total->amount->value();
+        $raw_currency = $line_item_wrapper->commerce_total->currency_code->value();
+        $product_path = $line_item_wrapper->commerce_display_path->value();
+
+
+        $product_image = image_style_url('medium', $product->field_product_image[LANGUAGE_NONE][0]['uri']);
+
+        $product_size = '';
+        // The adoption products will not have attributes on them
+        if ($line_item_wrapper->commerce_product->__isset('field_product_size')) {
+          $product_size_data = $line_item_wrapper->commerce_product->field_product_size->value();
+          $product_size = $product_size_data->name;
+        }
+          $new_line_item_data = array(
+            'product_title' => $product->title,
+            'product_image' => $product_image,
+            'product_quantity' => number_format($line_item->quantity),
+            'product_unit_price' => commerce_currency_format($raw_line_item_price, $raw_currency),
+            'product_attribute' => $product_size,
+            'type' => $line_item->type,
+            'size' => $product_size,
+            'view_product' => [
+              '#url' => url($product_path),
+              '#title' => t('View product'),
+            ],
+            'review_this_link' => url(url($product_path), ['absolute' => TRUE]) . '#product-review',
+          );
+          // Before we add it to the array make sure the item doesn't already
+          // exist otherwise we will display duplicates.
+          if (!in_array($new_line_item_data, $order->line_item_data, true)) {
+            $order->line_item_data[] = $new_line_item_data;
+          }
+
+      }
+      elseif ($line_item->type == 'shipping') {
+        // There will only be ONE line item for shipping so lets find it and get
+        // its price
+        $shipping_amount = $line_item->commerce_unit_price[LANGUAGE_NONE][0]['amount'];
+        $shipping_currency = $line_item->commerce_unit_price[LANGUAGE_NONE][0]['currency_code'];
+        $order->order_delivery_charge = commerce_currency_format($shipping_amount, $shipping_currency);
+
+        $shipping_service = $line_item->data['shipping_service']['base'];
+
+      }
+    }
+    $order->formatted_date = format_date($order->created, 'custom', 'j M Y');
+    if ($order_wrapper->__isset('commerce_customer_shipping')
+      && $order_wrapper->commerce_customer_shipping->__isset('commerce_customer_address')
+    ) {
+      $order->full_name = $order_wrapper->commerce_customer_shipping->commerce_customer_address->name_line->value();
+      $order->postcode = $order_wrapper->commerce_customer_shipping->commerce_customer_address->postal_code->value();
+    }
+
+    switch ($order->status) {
+      case 'pending':
+        $status = t('Processing');
+        break;
+      case 'order_fulfilled':
+        $status = t('Dispatched');
+        break;
+      case 'cancelled':
+        $status = t('Cancelled');
+        break;
+      case 'refund':
+        $status = t('Refund');
+        break;
+    }
+    $order->order_status = $status;
+  }
+  $product_one = variable_get('product_one');
+  $product_two = variable_get('product_two');
+  $product_three = variable_get('product_three');
+
+  $product_nodes = node_load_multiple(array($product_one['entity_id'],$product_two['entity_id'], $product_three['entity_id']));
+
+  $upsell_product_view = array();
+  foreach($product_nodes as $id => $product_node) {
+    $product = commerce_product_load($product_node->field_product[LANGUAGE_NONE][0]['product_id']);
+
+    $title = $product->title;
+    $price = commerce_currency_format($product->commerce_price[LANGUAGE_NONE][0]['amount'], $product->commerce_price[LANGUAGE_NONE][0]['currency_code']);
+    $image = file_create_url($product->field_product_image[LANGUAGE_NONE][0]['uri']);
+
+    $upsell_product_view[$id]['image_path'] = $image;
+    $upsell_product_view[$id]['title'] = $title;
+    $upsell_product_view[$id]['price'] = $price;
+    $upsell_product_view[$id]['url'] = url('node/' . $id, array('absolute' => TRUE));
+  }
+
+  $params['upsell_products'] = $upsell_product_view;
+// we want to return an array of orders, current(order confirmation), past, current/pending
+  $params['current_orders'] = $current_orders;
+  $params['past_orders'] = $past_orders;
+  $params['abandoned_orders'] = $abandoned_orders;
+  return $params;
 }
