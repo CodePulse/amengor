@@ -303,7 +303,7 @@ function _amengor_custom_order_details($orders = array(), $abandoned = 0, $your_
         $product_path = $line_item_wrapper->commerce_display_path->value();
 
 
-        $product_image = image_style_url('medium', $product->field_product_image[LANGUAGE_NONE][0]['uri']);
+        $product_image = image_style_url('medium', $product->field_image[LANGUAGE_NONE][0]['uri']);
 
         $product_size = '';
         // The adoption products will not have attributes on them
