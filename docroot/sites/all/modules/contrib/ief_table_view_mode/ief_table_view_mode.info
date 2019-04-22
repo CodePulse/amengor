@@ -4,9 +4,9 @@ package = Fields
 dependencies[] = inline_entity_form
 core = 7.x
 
-; Information added by Drupal.org packaging script on 2016-02-01
-version = "7.x-1.0-beta1"
+; Information added by Drupal.org packaging script on 2017-04-01
+version = "7.x-1.0-beta2"
 core = "7.x"
 project = "ief_table_view_mode"
-datestamp = "1454341140"
+datestamp = "1491067686"
 
