@@ -1,0 +1,8 @@
+<?php
+
+/**
+ * @file
+ * Code for the KA - Views feature.
+ */
+
+include_once 'ka_views.features.inc';
